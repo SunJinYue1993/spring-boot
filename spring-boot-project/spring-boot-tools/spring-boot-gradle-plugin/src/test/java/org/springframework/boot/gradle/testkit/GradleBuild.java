@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2019 the original author or authors.
+ * Copyright 2012-2020 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -86,8 +86,9 @@ public class GradleBuild {
 	}
 
 	private List<File> pluginClasspath() {
-		return Arrays.asList(new File("bin"), new File("build/classes/java/main"), new File("build/resources/main"),
-				new File(pathOfJarContaining(LaunchScript.class)), new File(pathOfJarContaining(ClassVisitor.class)),
+		return Arrays.asList(new File("bin/main"), new File("build/classes/java/main"),
+				new File("build/resources/main"), new File(pathOfJarContaining(LaunchScript.class)),
+				new File(pathOfJarContaining(ClassVisitor.class)),
 				new File(pathOfJarContaining(DependencyManagementPlugin.class)),
 				new File(pathOfJarContaining(PropertiesKt.class)), new File(pathOfJarContaining(KotlinLogger.class)),
 				new File(pathOfJarContaining(KotlinPlugin.class)), new File(pathOfJarContaining(KotlinProject.class)),
@@ -148,9 +149,6 @@ public class GradleBuild {
 		}
 		if (this.gradleVersion != null) {
 			gradleRunner.withGradleVersion(this.gradleVersion);
-		}
-		else if (this.dsl == Dsl.KOTLIN) {
-			gradleRunner.withGradleVersion("4.10.3");
 		}
 		List<String> allArguments = new ArrayList<>();
 		allArguments.add("-PbootVersion=" + getBootVersion());
